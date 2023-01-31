@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu, MenuItem } = require('electron');
+const { app, BrowserWindow, Menu, MenuItem, globalShortcut } = require('electron');
 const path = require('path');
 
 const createWindow = () => {
@@ -41,6 +41,10 @@ Menu.setApplicationMenu(menu);
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+    globalShortcut.register('Alt+CommandOrControl+I', () => {
+        console.log('Electron loves global shortcuts!')
+    })
+}).then(() => {
     createWindow();
 
     app.on('activate', () => {
