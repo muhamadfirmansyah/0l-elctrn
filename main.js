@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu, MenuItem } = require('electron');
 const path = require('path');
 
 const createWindow = () => {
@@ -13,12 +13,29 @@ const createWindow = () => {
     });
 
     // and load the index.html of the app.
-    win.loadFile('index.html');
+    // win.loadFile('index.html');
+
+    // load the external URL. Learn more here: https://dev.to/austincunningham/create-an-electron-app-on-fedora-4gm5
+    win.loadURL('https://en.wikipedia.com');
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
 }
 
+// Customize Menu
+const menu = new Menu();
+menu.append(new MenuItem({
+    label: 'Menu',
+    submenu: [
+        {
+            role: 'help',
+            accelerator: process.platform === 'darwin' ? 'Alt+Cmd+I' : 'Alt+Shift+I',
+            click: () => { console.log('Sorry, I cannot help you!') }
+        }
+    ]
+}))
+
+Menu.setApplicationMenu(menu);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
