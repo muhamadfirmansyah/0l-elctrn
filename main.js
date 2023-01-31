@@ -13,16 +13,16 @@ const createWindow = () => {
     });
 
     // and load the index.html of the app.
-    // win.loadFile('index.html');
+    win.loadFile('index.html');
 
     // load the external URL. Learn more here: https://dev.to/austincunningham/create-an-electron-app-on-fedora-4gm5
-    win.loadURL('https://en.wikipedia.com');
+    // win.loadURL('https://en.wikipedia.com');
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();
 }
 
-// Customize Menu
+// Customize Menu. Learn more here: https://www.electronjs.org/docs/latest/tutorial/keyboard-shortcuts
 const menu = new Menu();
 menu.append(new MenuItem({
     label: 'Menu',
@@ -41,6 +41,7 @@ Menu.setApplicationMenu(menu);
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+    // adding global shortcut. Learn more here: https://www.electronjs.org/docs/latest/tutorial/keyboard-shortcuts
     globalShortcut.register('Alt+CommandOrControl+I', () => {
         console.log('Electron loves global shortcuts!')
     })
